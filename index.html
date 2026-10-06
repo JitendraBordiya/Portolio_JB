@@ -1236,9 +1236,89 @@
             .metric { font-size: 0.8rem; padding: 0.4rem 0.7rem; }
             .project-description, .about-content p { overflow-wrap: break-word; }
         }
+
+        /* ===== Icons, timeline, typing effect ===== */
+        .icon { width: 1.15em; height: 1.15em; fill: none; stroke: currentColor; stroke-width: 2;
+                stroke-linecap: round; stroke-linejoin: round; flex-shrink: 0; vertical-align: -0.2em; }
+        .hero-contact .icon { color: var(--secondary); }
+        body.dark-mode .hero-contact .icon { color: var(--accent-bright); }
+        .project-tag { display: inline-flex; align-items: center; gap: 0.4rem; }
+        .skill-category h3, .contact-item h3 { display: flex; align-items: center; gap: 0.6rem; }
+        .skill-category h3 .icon, .contact-item h3 .icon { color: var(--secondary); }
+        body.dark-mode .skill-category h3 .icon, body.dark-mode .contact-item h3 .icon { color: var(--accent-bright); }
+        .achievement-item strong, .highlight-box strong { display: inline-flex; align-items: center; gap: 0.5rem; }
+        .theme-toggle { display: inline-flex; align-items: center; justify-content: center; }
+        .copy-btn { display: inline-flex; vertical-align: middle; }
+        .copy-btn .icon { width: 1em; height: 1em; }
+        .btn .icon { margin-right: 0.45rem; }
+
+        a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+
+        .hero-headline { min-height: 1.7em; }
+        .typed { color: var(--secondary); font-weight: 600; }
+        body.dark-mode .typed { color: var(--accent-bright); }
+        .caret { display: inline-block; width: 2px; height: 1.1em; margin-left: 2px; background: var(--secondary);
+                 vertical-align: -0.18em; animation: blink 1s steps(1) infinite; }
+        @keyframes blink { 50% { opacity: 0; } }
+
+        .experience { background: var(--bg-white); }
+        body.dark-mode .experience { background: var(--dark-bg); }
+        .timeline { --tl-pad: 2.5rem; --dot: 14px; position: relative; max-width: 820px; margin: 0 auto; padding-left: var(--tl-pad); }
+        .timeline::before { content: ''; position: absolute; top: 8px; bottom: 8px; left: calc(var(--tl-pad) / 2 - 1px);
+                            width: 2px; background: linear-gradient(var(--secondary), var(--accent-bright)); opacity: 0.35; }
+        .timeline-item { position: relative; background: var(--bg-light); border: 1px solid var(--border); border-radius: 8px;
+                         padding: 1.5rem; margin-bottom: 1.5rem; transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease; }
+        body.dark-mode .timeline-item { background: var(--dark-bg-secondary); border-color: var(--dark-border); }
+        .timeline-item:hover { transform: translateY(-4px); border-color: var(--secondary); box-shadow: 0 12px 28px rgba(30, 64, 175, 0.12); }
+        .timeline-item::before { content: ''; position: absolute; top: 1.75rem; width: var(--dot); height: var(--dot); border-radius: 50%;
+                                 left: calc(var(--tl-pad) / -2 - var(--dot) / 2 - 1px); background: var(--secondary);
+                                 box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.2); }
+        .tl-head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 0.4rem 1rem; }
+        .tl-head h3 { font-size: 1.2rem; color: var(--primary); }
+        body.dark-mode .tl-head h3 { color: var(--dark-text); }
+        .tl-date { display: inline-flex; align-items: center; gap: 0.4rem; font-size: 0.9rem; font-weight: 600; color: var(--secondary); }
+        body.dark-mode .tl-date { color: var(--accent-bright); }
+        .tl-company { color: var(--text-light); margin: 0.2rem 0 0.9rem; font-size: 0.95rem; }
+        body.dark-mode .tl-company { color: var(--dark-text-light); }
+        .tl-list { margin: 0 0 1rem 1.2rem; color: var(--text-dark); }
+        body.dark-mode .tl-list { color: var(--dark-text-light); }
+        .tl-list li { margin-bottom: 0.35rem; }
+        @media (max-width: 600px) {
+            .timeline { --tl-pad: 1.75rem; }
+            .timeline-item { padding: 1.1rem; }
+            .tl-head h3 { font-size: 1.05rem; }
+        }
     </style>
 </head>
 <body>
+    <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+        <symbol id="i-mail" viewBox="0 0 24 24"><path d="M4 4h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z"/><polyline points="22,6 12,13 2,6"/></symbol>
+        <symbol id="i-phone" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></symbol>
+        <symbol id="i-pin" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></symbol>
+        <symbol id="i-linkedin" viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></symbol>
+        <symbol id="i-github" viewBox="0 0 24 24"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></symbol>
+        <symbol id="i-briefcase" viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></symbol>
+        <symbol id="i-server" viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="8" rx="2" ry="2"/><rect x="2" y="14" width="20" height="8" rx="2" ry="2"/><line x1="6" y1="6" x2="6.01" y2="6"/><line x1="6" y1="18" x2="6.01" y2="18"/></symbol>
+        <symbol id="i-layout" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></symbol>
+        <symbol id="i-database" viewBox="0 0 24 24"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></symbol>
+        <symbol id="i-cloud" viewBox="0 0 24 24"><path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"/></symbol>
+        <symbol id="i-cpu" viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="2" ry="2"/><rect x="9" y="9" width="6" height="6"/><line x1="9" y1="1" x2="9" y2="4"/><line x1="15" y1="1" x2="15" y2="4"/><line x1="9" y1="20" x2="9" y2="23"/><line x1="15" y1="20" x2="15" y2="23"/><line x1="20" y1="9" x2="23" y2="9"/><line x1="20" y1="14" x2="23" y2="14"/><line x1="1" y1="9" x2="4" y2="9"/><line x1="1" y1="14" x2="4" y2="14"/></symbol>
+        <symbol id="i-tool" viewBox="0 0 24 24"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></symbol>
+        <symbol id="i-trophy" viewBox="0 0 24 24"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><path d="M4 22h16"/><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"/><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"/><path d="M18 2H6v7a6 6 0 0 0 12 0V2z"/></symbol>
+        <symbol id="i-zap" viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></symbol>
+        <symbol id="i-users" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></symbol>
+        <symbol id="i-rocket" viewBox="0 0 24 24"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></symbol>
+        <symbol id="i-dollar" viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></symbol>
+        <symbol id="i-bulb" viewBox="0 0 24 24"><line x1="9" y1="18" x2="15" y2="18"/><line x1="10" y1="22" x2="14" y2="22"/><path d="M15.09 14c.18-.98.65-1.74 1.41-2.5A4.65 4.65 0 0 0 18 8 6 6 0 0 0 6 8c0 1 .23 2.23 1.5 3.5A4.61 4.61 0 0 1 8.91 14"/></symbol>
+        <symbol id="i-copy" viewBox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></symbol>
+        <symbol id="i-moon" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></symbol>
+        <symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></symbol>
+        <symbol id="i-calendar" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></symbol>
+        <symbol id="i-download" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></symbol>
+        <symbol id="i-code" viewBox="0 0 24 24"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></symbol>
+        <symbol id="i-cap" viewBox="0 0 24 24"><path d="M22 10L12 5 2 10l10 5 10-5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></symbol>
+    </svg>
+
     <!-- Scroll Progress Bar -->
     <div class="scroll-progress"></div>
 
@@ -1248,12 +1328,13 @@
             <a href="#" class="logo">Jitendra <span>Bordiya</span></a>
             <ul>
                 <li><a href="#about">About</a></li>
+                <li><a href="#experience">Experience</a></li>
                 <li><a href="#projects">Projects</a></li>
                 <li><a href="#skills">Skills</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
             <div style="display: flex; gap: 1rem; align-items: center;">
-                <button class="theme-toggle" id="themeToggle" title="Toggle dark mode">🌙</button>
+                <button class="theme-toggle" id="themeToggle" title="Toggle dark mode" aria-label="Toggle dark mode"><svg class="icon" aria-hidden="true"><use href="#i-moon"/></svg></button>
                 <div class="hamburger" id="hamburger">
                     <span></span>
                     <span></span>
@@ -1263,6 +1344,7 @@
         </div>
         <div class="mobile-menu" id="mobileMenu">
             <a href="#about" class="mobile-nav-link">About</a>
+            <a href="#experience" class="mobile-nav-link">Experience</a>
             <a href="#projects" class="mobile-nav-link">Projects</a>
             <a href="#skills" class="mobile-nav-link">Skills</a>
             <a href="#contact" class="mobile-nav-link">Contact</a>
@@ -1275,28 +1357,28 @@
             <div class="hero-content">
                 <h1 class="hero-name">Jitendra Bordiya</h1>
                 <p class="hero-role">Full Stack Engineer | MERN Stack &amp; .NET Core</p>
-                <p class="hero-headline">I build enterprise-scale SaaS platforms.</p>
+                <p class="hero-headline">I build <span class="typed" id="typed">enterprise-scale SaaS platforms</span><span class="caret" aria-hidden="true"></span></p>
                 <div class="hero-contact">
-                    <a href="mailto:jitendra7496@gmail.com">📧 jitendra7496@gmail.com</a>
-                    <a href="tel:+919516882873">📱 +91 9516882873</a>
-                    <span>📍 Pune, India</span>
-                    <a href="https://linkedin.com/in/jitendra-bordiya-b88b86175" target="_blank" rel="noopener">💼 LinkedIn</a>
-                    <a href="https://github.com/JitendraBordiya" target="_blank" rel="noopener">🐙 GitHub</a>
+                    <a href="mailto:jitendra7496@gmail.com"><svg class="icon" aria-hidden="true"><use href="#i-mail"/></svg> jitendra7496@gmail.com</a>
+                    <a href="tel:+919516882873"><svg class="icon" aria-hidden="true"><use href="#i-phone"/></svg> +91 9516882873</a>
+                    <span><svg class="icon" aria-hidden="true"><use href="#i-pin"/></svg> Pune, India</span>
+                    <a href="https://linkedin.com/in/jitendra-bordiya-b88b86175" target="_blank" rel="noopener"><svg class="icon" aria-hidden="true"><use href="#i-linkedin"/></svg> LinkedIn</a>
+                    <a href="https://github.com/JitendraBordiya" target="_blank" rel="noopener"><svg class="icon" aria-hidden="true"><use href="#i-github"/></svg> GitHub</a>
                 </div>
                 <p>5+ years designing and shipping high-performance systems across MERN and .NET ecosystems. Currently developing platforms serving 5000+ users, managing 100K+ properties, and processing 100K+ daily transactions.</p>
 
                 <div class="hero-stats">
                     <div class="stat">
-                        <div class="stat-number" data-target="5">0</div>
+                        <div class="stat-number" data-target="5" data-suffix="+">0</div>
                         <div class="stat-label">Years Experience</div>
                     </div>
                     <div class="stat">
-                        <div class="stat-number" data-target="22">0</div>
+                        <div class="stat-number" data-target="22" data-suffix="+">0</div>
                         <div class="stat-label">APIs Deployed</div>
                     </div>
                     <div class="stat">
-                        <div class="stat-number" data-target="60">0</div>
-                        <div class="stat-label">% Performance Gain</div>
+                        <div class="stat-number" data-target="60" data-suffix="%">0</div>
+                        <div class="stat-label">Performance Gain</div>
                     </div>
                 </div>
 
@@ -1328,9 +1410,9 @@
                         <p>I specialize in architecting robust, high-performance backend systems and modern frontend experiences. My expertise spans across multiple enterprise domains: property management, land lifecycle systems, and commodity trading platforms.</p>
                         <p>What drives me is solving complex technical problems and mentoring teams to build better software. I'm passionate about performance optimization, clean architecture, and leveraging modern tools like Gen AI to accelerate development.</p>
                         <div class="highlight-box">
-                            <strong>💡 Current Focus:</strong> MERN stack development on SLM platform, mentoring junior developers, and exploring AI-assisted development workflows.
+                            <strong><svg class="icon" aria-hidden="true"><use href="#i-bulb"/></svg> Current Focus:</strong> MERN stack development on SLM platform, mentoring junior developers, and exploring AI-assisted development workflows.
                         </div>
-                        <a href="Jitendra_Bordiya_Resume.pdf" download class="btn btn-primary" style="margin-top: 1rem;">Download Resume</a>
+                        <a href="Jitendra_Bordiya_Resume.pdf" download class="btn btn-primary" style="margin-top: 1rem;"><svg class="icon" aria-hidden="true"><use href="#i-download"/></svg>Download Resume</a>
                     </div>
                 </div>
                 <div>
@@ -1352,6 +1434,67 @@
         </div>
     </section>
 
+    <!-- Experience Timeline -->
+    <section id="experience" class="experience">
+        <div class="container">
+            <h2>Experience</h2>
+            <div class="timeline">
+                <article class="timeline-item">
+                    <div class="tl-head">
+                        <h3>MERN Stack Developer</h3>
+                        <span class="tl-date"><svg class="icon" aria-hidden="true"><use href="#i-calendar"/></svg> 2025 &ndash; Present (~1 year)</span>
+                    </div>
+                    <p class="tl-company">Irth Solutions &middot; Stakeholder &amp; Land Management (SLM) &middot; Pune</p>
+                    <ul class="tl-list">
+                        <li>Building the SLM product on the MERN stack.</li>
+                    </ul>
+                    <div class="project-tech">
+                        <span class="tech-badge">MongoDB</span><span class="tech-badge">Express.js</span>
+                        <span class="tech-badge">React</span><span class="tech-badge">Node.js</span>
+                    </div>
+                </article>
+                <article class="timeline-item">
+                    <div class="tl-head">
+                        <h3>Full Stack Developer (.NET Core + Angular)</h3>
+                        <span class="tl-date"><svg class="icon" aria-hidden="true"><use href="#i-calendar"/></svg> 2024 &ndash; 2025 (~1.5 years)</span>
+                    </div>
+                    <p class="tl-company">Irth Solutions &middot; Irth Land Management (ILM) &middot; Pune</p>
+                    <ul class="tl-list">
+                        <li>Built RESTful APIs in .NET Core and Angular front ends.</li>
+                        <li>Automated deployments with Azure DevOps YAML pipelines, Azure Container Apps and Key Vault.</li>
+                        <li>Optimized SQL Server queries, wrote unit tests and did code reviews.</li>
+                    </ul>
+                    <div class="project-tech">
+                        <span class="tech-badge">.NET Core</span><span class="tech-badge">Angular</span>
+                        <span class="tech-badge">SQL Server</span><span class="tech-badge">Azure DevOps</span>
+                    </div>
+                </article>
+                <article class="timeline-item">
+                    <div class="tl-head">
+                        <h3>Software Engineer</h3>
+                        <span class="tl-date"><svg class="icon" aria-hidden="true"><use href="#i-calendar"/></svg> Nov 2021 &ndash; Jan 2024</span>
+                    </div>
+                    <p class="tl-company">Fendahl Technology &middot; Commodity Trading &amp; Risk Management (CTRM) &middot; Nagpur</p>
+                    <ul class="tl-list">
+                        <li>Improved bulk invoice generation performance by 60%.</li>
+                        <li>Designed database schemas and optimized SQL Server queries.</li>
+                        <li>Diagnosed and resolved production and QA deployment issues.</li>
+                    </ul>
+                    <div class="project-tech">
+                        <span class="tech-badge">C#</span><span class="tech-badge">.NET</span><span class="tech-badge">SQL Server</span>
+                    </div>
+                </article>
+                <article class="timeline-item">
+                    <div class="tl-head">
+                        <h3>B.E. Information Technology</h3>
+                        <span class="tl-date"><svg class="icon" aria-hidden="true"><use href="#i-cap"/></svg> 2020</span>
+                    </div>
+                    <p class="tl-company">Sagar Institute of Research &amp; Technology Excellence &middot; Indore</p>
+                </article>
+            </div>
+        </div>
+    </section>
+
     <!-- Projects Section -->
     <section id="projects" class="projects">
         <div class="container">
@@ -1367,7 +1510,7 @@
             <div class="projects-grid" id="projectsGrid">
                 <!-- SLM Project -->
                 <div class="project-card" data-category="mern">
-                    <div class="project-tag">🚀 Current Role</div>
+                    <div class="project-tag"><svg class="icon" aria-hidden="true"><use href="#i-rocket"/></svg> Current Role</div>
                     <h3>SLM Platform</h3>
                     <p class="project-subtitle">Stakeholder & Land Management</p>
                     <p class="project-description">Multi-tenant SaaS platform for property and stakeholder data management serving 5000+ users across 150+ organizations managing 100K+ properties.</p>
@@ -1387,7 +1530,7 @@
 
                 <!-- ILM Project -->
                 <div class="project-card" data-category="dotnet">
-                    <div class="project-tag">⚙️ Full Stack</div>
+                    <div class="project-tag"><svg class="icon" aria-hidden="true"><use href="#i-code"/></svg> Full Stack</div>
                     <h3>ILM Platform</h3>
                     <p class="project-subtitle">Irth Land Management</p>
                     <p class="project-description">Enterprise land portfolio management and compliance tracking system for 8000+ properties across 40+ organizations with automated workflows.</p>
@@ -1407,7 +1550,7 @@
 
                 <!-- CTRM Project -->
                 <div class="project-card" data-category="fintech">
-                    <div class="project-tag">💰 FinTech</div>
+                    <div class="project-tag"><svg class="icon" aria-hidden="true"><use href="#i-dollar"/></svg> FinTech</div>
                     <h3>CTRM Platform</h3>
                     <p class="project-subtitle">Commodity Trading & Risk Management</p>
                     <p class="project-description">Enterprise trading platform handling 100K+ daily transactions with trade settlement, contract management, and regulatory compliance features.</p>
@@ -1433,7 +1576,7 @@
         <div class="modal-content">
             <span class="close-modal" onclick="closeProjectModal('slm')">&times;</span>
             <h2>SLM Platform — Detailed Overview</h2>
-            <p><strong>Timeline:</strong> 01/2024 – Present</p>
+            <p><strong>Timeline:</strong> 2025 – Present (~1 year)</p>
             <p><strong>Scale:</strong> 5000+ users | 150+ organizations | 100K+ properties</p>
             <h3>Key Responsibilities</h3>
             <ul style="margin: 1rem 0; padding-left: 1.5rem;">
@@ -1465,7 +1608,7 @@
         <div class="modal-content">
             <span class="close-modal" onclick="closeProjectModal('ilm')">&times;</span>
             <h2>ILM Platform — Detailed Overview</h2>
-            <p><strong>Timeline:</strong> 05/2023 – 03/2024</p>
+            <p><strong>Timeline:</strong> 2024 – 2025 (~1.5 years)</p>
             <p><strong>Scale:</strong> 8000+ properties | 40+ organizations</p>
             <h3>Key Responsibilities</h3>
             <ul style="margin: 1rem 0; padding-left: 1.5rem;">
@@ -1496,7 +1639,7 @@
         <div class="modal-content">
             <span class="close-modal" onclick="closeProjectModal('ctrm')">&times;</span>
             <h2>CTRM Platform — Detailed Overview</h2>
-            <p><strong>Timeline:</strong> 11/2021 – 04/2023</p>
+            <p><strong>Timeline:</strong> Nov 2021 – Jan 2024</p>
             <p><strong>Scale:</strong> 100K+ daily transactions</p>
             <h3>Key Responsibilities</h3>
             <ul style="margin: 1rem 0; padding-left: 1.5rem;">
@@ -1526,7 +1669,7 @@
             <h2>Technical Skills</h2>
             <div class="skills-grid">
                 <div class="skill-category">
-                    <h3>🔧 Backend</h3>
+                    <h3><svg class="icon" aria-hidden="true"><use href="#i-server"/></svg> Backend</h3>
                     <div class="skills-list">
                         <div class="skill-item">Node.js</div>
                         <div class="skill-item">Express.js</div>
@@ -1538,7 +1681,7 @@
                 </div>
 
                 <div class="skill-category">
-                    <h3>🎨 Frontend</h3>
+                    <h3><svg class="icon" aria-hidden="true"><use href="#i-layout"/></svg> Frontend</h3>
                     <div class="skills-list">
                         <div class="skill-item">React v18+</div>
                         <div class="skill-item">Angular v16+</div>
@@ -1550,7 +1693,7 @@
                 </div>
 
                 <div class="skill-category">
-                    <h3>🗄️ Database</h3>
+                    <h3><svg class="icon" aria-hidden="true"><use href="#i-database"/></svg> Database</h3>
                     <div class="skills-list">
                         <div class="skill-item">MongoDB</div>
                         <div class="skill-item">Mongoose</div>
@@ -1562,7 +1705,7 @@
                 </div>
 
                 <div class="skill-category">
-                    <h3>☁️ DevOps</h3>
+                    <h3><svg class="icon" aria-hidden="true"><use href="#i-cloud"/></svg> DevOps</h3>
                     <div class="skills-list">
                         <div class="skill-item">Azure DevOps</div>
                         <div class="skill-item">CI/CD Pipelines</div>
@@ -1574,7 +1717,7 @@
                 </div>
 
                 <div class="skill-category">
-                    <h3>🤖 Gen AI Tools</h3>
+                    <h3><svg class="icon" aria-hidden="true"><use href="#i-cpu"/></svg> Gen AI Tools</h3>
                     <div class="skills-list">
                         <div class="skill-item">GitHub Copilot</div>
                         <div class="skill-item">Claude AI</div>
@@ -1585,7 +1728,7 @@
                 </div>
 
                 <div class="skill-category">
-                    <h3>🛠️ Tools</h3>
+                    <h3><svg class="icon" aria-hidden="true"><use href="#i-tool"/></svg> Tools</h3>
                     <div class="skills-list">
                         <div class="skill-item">Postman</div>
                         <div class="skill-item">MongoDB Atlas</div>
@@ -1605,22 +1748,22 @@
             <h2>Key Achievements</h2>
             <div class="achievements-list">
                 <div class="achievement-item">
-                    <strong>🏆 Enterprise Scale Impact:</strong> Architected multi-tenant SaaS platform serving 5000+ users across 150+ organizations, handling 2000+ daily API requests with sub-100ms latency.
+                    <strong><svg class="icon" aria-hidden="true"><use href="#i-trophy"/></svg> Enterprise Scale Impact:</strong> Architected multi-tenant SaaS platform serving 5000+ users across 150+ organizations, handling 2000+ daily API requests with sub-100ms latency.
                 </div>
                 <div class="achievement-item">
-                    <strong>⚡ Performance Excellence:</strong> Delivered consistent 45-60% performance improvements across platforms through query optimization, schema design, and infrastructure scaling.
+                    <strong><svg class="icon" aria-hidden="true"><use href="#i-zap"/></svg> Performance Excellence:</strong> Delivered consistent 45-60% performance improvements across platforms through query optimization, schema design, and infrastructure scaling.
                 </div>
                 <div class="achievement-item">
-                    <strong>👥 Team Leadership:</strong> Mentored 3+ junior developers, with 2 promoted to senior roles. Conducted 50+ code reviews ensuring quality and architectural consistency.
+                    <strong><svg class="icon" aria-hidden="true"><use href="#i-users"/></svg> Team Leadership:</strong> Mentored 3+ junior developers, with 2 promoted to senior roles. Conducted 50+ code reviews ensuring quality and architectural consistency.
                 </div>
                 <div class="achievement-item">
-                    <strong>🚀 DevOps Transformation:</strong> Implemented comprehensive Azure DevOps CI/CD automation, reducing deployment cycles from 2 weeks to 3 days with zero-downtime releases.
+                    <strong><svg class="icon" aria-hidden="true"><use href="#i-rocket"/></svg> DevOps Transformation:</strong> Implemented comprehensive Azure DevOps CI/CD automation, reducing deployment cycles from 2 weeks to 3 days with zero-downtime releases.
                 </div>
                 <div class="achievement-item">
-                    <strong>💰 FinTech Expertise:</strong> Successfully optimized high-frequency trading platform processing 100K+ daily transactions, improving settlement performance by 60%.
+                    <strong><svg class="icon" aria-hidden="true"><use href="#i-dollar"/></svg> FinTech Expertise:</strong> Successfully optimized high-frequency trading platform processing 100K+ daily transactions, improving settlement performance by 60%.
                 </div>
                 <div class="achievement-item">
-                    <strong>🤖 Modern Development:</strong> Driving adoption of Gen AI tools (GitHub Copilot, Claude AI) across teams, improving development velocity by 25-30%.
+                    <strong><svg class="icon" aria-hidden="true"><use href="#i-cpu"/></svg> Modern Development:</strong> Driving adoption of Gen AI tools (GitHub Copilot, Claude AI) across teams, improving development velocity by 25-30%.
                 </div>
             </div>
         </div>
@@ -1633,21 +1776,21 @@
             <p style="text-align: center; margin-bottom: 2rem; font-size: 1.1rem;">Let's collaborate on building something amazing</p>
             <div class="contact-info">
                 <div class="contact-item">
-                    <h3>📧 Email</h3>
+                    <h3><svg class="icon" aria-hidden="true"><use href="#i-mail"/></svg> Email</h3>
                     <p>
                         <a href="mailto:jitendra7496@gmail.com">jitendra7496@gmail.com</a>
-                        <button class="copy-btn" onclick="copyToClipboard('jitendra7496@gmail.com', event)">📋</button>
+                        <button class="copy-btn" aria-label="Copy to clipboard" onclick="copyToClipboard('jitendra7496@gmail.com', event)"><svg class="icon" aria-hidden="true"><use href="#i-copy"/></svg></button>
                     </p>
                 </div>
                 <div class="contact-item">
-                    <h3>📱 Phone</h3>
+                    <h3><svg class="icon" aria-hidden="true"><use href="#i-phone"/></svg> Phone</h3>
                     <p>
                         <a href="tel:+919516882873">+91 9516882873</a>
-                        <button class="copy-btn" onclick="copyToClipboard('+919516882873', event)">📋</button>
+                        <button class="copy-btn" aria-label="Copy to clipboard" onclick="copyToClipboard('+919516882873', event)"><svg class="icon" aria-hidden="true"><use href="#i-copy"/></svg></button>
                     </p>
                 </div>
                 <div class="contact-item">
-                    <h3>📍 Location</h3>
+                    <h3><svg class="icon" aria-hidden="true"><use href="#i-pin"/></svg> Location</h3>
                     <p>Pune, India</p>
                 </div>
             </div>
@@ -1672,20 +1815,40 @@
     <div class="toast" id="toast"></div>
 
     <script>
+
+        // ==================== TYPING EFFECT ====================
+        (function () {
+            const el = document.getElementById('typed');
+            if (!el) return;
+            const phrases = ['enterprise-scale SaaS platforms', 'MERN stack applications', '.NET Core APIs and Angular apps', 'secure, cloud-ready software'];
+            if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) { el.textContent = phrases[0]; return; }
+            let i = 0, j = 0, deleting = false;
+            function tick() {
+                const full = phrases[i];
+                el.textContent = full.slice(0, j);
+                if (!deleting && j < full.length) { j++; setTimeout(tick, 60); }
+                else if (!deleting) { deleting = true; setTimeout(tick, 1600); }
+                else if (j > 0) { j--; setTimeout(tick, 30); }
+                else { deleting = false; i = (i + 1) % phrases.length; setTimeout(tick, 300); }
+            }
+            tick();
+        })();
+
         // ==================== THEME TOGGLE ====================
         const themeToggle = document.getElementById('themeToggle');
         const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        function setThemeIcon(isDark) { themeToggle.innerHTML = '<svg class="icon" aria-hidden="true"><use href="#i-' + (isDark ? 'sun' : 'moon') + '"/></svg>'; }
 
         // Load saved preference or use system preference
         if (localStorage.getItem('theme') === 'dark' || (!localStorage.getItem('theme') && prefersDark)) {
             document.body.classList.add('dark-mode');
-            themeToggle.textContent = '☀️';
+            setThemeIcon(true);
         }
 
         themeToggle.addEventListener('click', () => {
             document.body.classList.toggle('dark-mode');
             const isDark = document.body.classList.contains('dark-mode');
-            themeToggle.textContent = isDark ? '☀️' : '🌙';
+            setThemeIcon(isDark);
             localStorage.setItem('theme', isDark ? 'dark' : 'light');
         });
 
@@ -1718,16 +1881,17 @@
             const counters = document.querySelectorAll('.stat-number');
             counters.forEach(counter => {
                 const target = parseInt(counter.getAttribute('data-target'));
+                const suffix = counter.getAttribute('data-suffix') || '';
                 let current = 0;
                 const increment = target / 50;
 
                 const updateCounter = () => {
                     current += increment;
                     if (current < target) {
-                        counter.textContent = Math.floor(current);
+                        counter.textContent = Math.floor(current) + suffix;
                         requestAnimationFrame(updateCounter);
                     } else {
-                        counter.textContent = target;
+                        counter.textContent = target + suffix;
                     }
                 };
 
@@ -1861,7 +2025,7 @@
             });
         }, observerOptions);
 
-        document.querySelectorAll('.skill-item, .project-card, .achievement-item').forEach(el => {
+        document.querySelectorAll('.skill-item, .project-card, .achievement-item, .timeline-item').forEach(el => {
             el.style.opacity = '0';
             el.style.transform = 'translateY(20px)';
             el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
